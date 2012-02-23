@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'guard/rack/runner'
 require 'fakefs/spec_helpers'
 
-describe Guard::Rack::Runner do
-  let(:runner) { Guard::Rack::Runner.new(options) }
+describe Guard::RackRunner do
+  let(:runner) { Guard::RackRunner.new(options) }
   let(:environment) { 'development' }
   let(:port) { 3000 }
   
@@ -96,7 +96,7 @@ describe Guard::Rack::Runner do
       before do
         pid_stub.returns(false)
         kill_expectation.never
-        runner.expects(:wait_for_pid_action).times(Guard::Rack::Runner::MAX_WAIT_COUNT)
+        runner.expects(:wait_for_pid_action).times(Guard::RackRunner::MAX_WAIT_COUNT)
       end
 
       it "should act properly" do
@@ -110,7 +110,7 @@ describe Guard::Rack::Runner do
     let(:options) { default_options.merge(:timeout => timeout) }
 
     it "should adjust the sleep time as necessary" do
-      runner.sleep_time.should == (timeout.to_f / Guard::Rack::Runner::MAX_WAIT_COUNT.to_f)
+      runner.sleep_time.should == (timeout.to_f / Guard::RackRunner::MAX_WAIT_COUNT.to_f)
     end
   end
 end

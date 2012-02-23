@@ -1,2 +1,2 @@
-require 'guard/rack/guard'
+require 'guard/rack'
 

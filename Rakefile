@@ -21,7 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = "MIT"
   gem.summary = "Restart Rack when files change."
   gem.email = "dblock@dblock.org"
-  gem.version = Guard::Rack::VERSION
+  gem.version = Guard::RackVersion::VERSION
   gem.authors = [ "Daniel Doubrovkine" ]
   gem.files = Dir.glob('lib/**/*')
 end

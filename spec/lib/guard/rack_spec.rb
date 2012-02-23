@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'guard/rack/guard'
+require 'guard/rack'
 
-describe Guard::Rack::Guard do
-  let(:guard) { Guard::Rack::Guard.new(watchers, options) }
+describe Guard::Rack do
+  let(:guard) { Guard::Rack.new(watchers, options) }
   let(:watchers) { [] }
   let(:options) { {} }
 
@@ -15,7 +15,7 @@ describe Guard::Rack::Guard do
   end
 
   describe '#start' do
-    let(:ui_expectation) { Guard::UI.expects(:info).with(regexp_matches(/#{Guard::Rack::Guard::DEFAULT_OPTIONS[:port]}/)) }
+    let(:ui_expectation) { Guard::UI.expects(:info).with(regexp_matches(/#{Guard::Rack::DEFAULT_OPTIONS[:port]}/)) }
 
     context 'start on start' do
       it "should show the right message and run startup" do
@@ -42,10 +42,10 @@ describe Guard::Rack::Guard do
     before do
       Guard::UI.expects(:info).with('Restarting Rack...')
       Guard::Notifier.expects(:notify).with(regexp_matches(/Rack restarting/), has_entry(:image => :pending))
-      Guard::Rack::Runner.any_instance.stubs(:pid).returns(pid)
+      Guard::RackRunner.any_instance.stubs(:pid).returns(pid)
     end
 
-    let(:runner_stub) { Guard::Rack::Runner.any_instance.stubs(:restart) }
+    let(:runner_stub) { Guard::RackRunner.any_instance.stubs(:restart) }
 
     context 'with pid file' do
       before do

@@ -8,7 +8,7 @@ module Guard
     attr_reader :options, :runner
 
     DEFAULT_OPTIONS = {
-        :port => 3000,
+        :port => 9292,
         :environment => 'development',
         :start_on_start => true,
         :force_run => false,

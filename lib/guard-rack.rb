@@ -1,0 +1,2 @@
+require 'guard/rack/guard'
+

@@ -1,4 +1,4 @@
-Guard::Rack [![Build Status](http://travis-ci.org/johnbintz/guard-rack.png)](http://travis-ci.org/dblock/guard-rack)
+Guard::Rack [![Build Status](http://travis-ci.org/dblock/guard-rack.png)](http://travis-ci.org/dblock/guard-rack)
 ===========
 
 Want to restart your Rack development with *rackup* whilst you work? Now you can!

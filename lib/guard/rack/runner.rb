@@ -19,9 +19,13 @@ module Guard
 
     def stop
       if File.file?(pid_file)
-        system %{kill -KILL #{File.read(pid_file).strip}}
-        wait_for_no_pid if $?.exitstatus == 0
-        FileUtils.rm pid_file
+        system %{kill -INT #{File.read(pid_file).strip}}
+        if $?.exitstatus == 0
+          wait_for_no_pid
+          remove_pid_file
+        else
+          raise "Rackup exited with non-zero exit status, whilst trying to stop."
+        end
       end
     end
 
@@ -51,6 +55,10 @@ module Guard
       File.file?(pid_file) ? File.read(pid_file).to_i : nil
     end
 
+    def remove_pid_file
+      FileUtils.rm pid_file if File.exist? pid_file
+    end
+
     def sleep_time
       options[:timeout].to_f / MAX_WAIT_COUNT.to_f
     end
@@ -71,9 +79,9 @@ module Guard
 
     def kill_unmanaged_pid!
       if pid = unmanaged_pid
-        system %{kill -KILL #{pid}}
-        FileUtils.rm pid_file
+        system %{kill -INT #{pid}}
         wait_for_no_pid
+        remove_pid_file
       end
     end
 
@@ -107,4 +115,3 @@ module Guard
       
   end
 end
-

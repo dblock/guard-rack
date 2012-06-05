@@ -82,10 +82,10 @@ describe Guard::Rack do
     end
   end
 
-  describe '#run_on_change' do
+  describe '#run_on_changes' do
     it "should reload on change" do
       guard.expects(:reload).once
-      guard.run_on_change([])
+      guard.run_on_changes([])
     end
   end
 end

@@ -105,6 +105,51 @@ describe Guard::RackRunner do
     end
   end
 
+  describe '#stop' do
+    
+    include FakeFS::SpecHelpers
+
+    context 'pid file exists' do
+      let(:pid) { 12345 }
+      let(:kill_stub) { runner.stubs(:kill) }
+      let(:pid_stub) { runner.stubs(:has_pid?) }
+
+      before do
+        FileUtils.mkdir_p File.split(runner.pid_file).first
+        File.open(runner.pid_file, 'w') { |fh| fh.print pid }
+      end
+
+      context 'rackup returns successful exit status' do
+        before do
+          kill_stub.returns(0)
+        end
+        it 'should return true' do
+          runner.stop.should be_true
+        end
+      end
+
+      context 'rackup returns unsuccessful exit status' do
+        before do
+          Guard::UI.expects(:info).with(regexp_matches(/.+/))
+          kill_stub.returns(1)
+        end
+        it 'should return false' do
+          runner.stop.should be_false
+        end
+        it 'should send some kind of message to UI.info' do
+          runner.stop
+        end
+      end
+    end
+
+    context "pid file does not exist" do
+      it "should return true if there's no pid file" do
+        runner.stop.should be_true
+      end
+    end
+
+  end
+
   describe '#sleep_time' do
     let(:timeout) { 30 }
     let(:options) { default_options.merge(:timeout => timeout) }

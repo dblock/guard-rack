@@ -11,6 +11,11 @@ module Guard
       @options = options
     end
 
+    def kill pid
+      system %{kill -INT #{pid}}
+      $?.exitstatus
+    end
+
     def start
       kill_unmanaged_pid! if options[:force_run]
       run_rack_command!
@@ -18,16 +23,22 @@ module Guard
     end
 
     def stop
-      if File.file?(pid_file)
-        system %{kill -KILL #{File.read(pid_file).strip}}
-        wait_for_no_pid if $?.exitstatus == 0
-        FileUtils.rm pid_file
+      # Rely on kill_unmanaged_pid if there's no pid file
+      return true unless File.file?(pid_file)
+ 
+      if kill(pid) == 0
+        wait_for_no_pid
+        remove_pid_file
+      else
+        UI.info "Rackup exited with non-zero exit status whilst trying to stop."
+        return false
       end
+
+      true
     end
 
     def restart
-      stop
-      start
+      stop and start
     end
 
     def build_rack_command
@@ -51,6 +62,10 @@ module Guard
       File.file?(pid_file) ? File.read(pid_file).to_i : nil
     end
 
+    def remove_pid_file
+      FileUtils.rm pid_file if File.exist? pid_file
+    end
+
     def sleep_time
       options[:timeout].to_f / MAX_WAIT_COUNT.to_f
     end
@@ -71,16 +86,16 @@ module Guard
 
     def kill_unmanaged_pid!
       if pid = unmanaged_pid
-        system %{kill -KILL #{pid}}
-        FileUtils.rm pid_file
+        kill pid
         wait_for_no_pid
+        remove_pid_file
       end
     end
 
     def unmanaged_pid
       %x{lsof -n -i TCP:#{options[:port]}}.each_line { |line|
         if line["*:#{options[:port]} "]
-          return line.split("\s")[1]
+          return line.split("\s")[1].to_i
         end
       }
       nil
@@ -107,4 +122,3 @@ module Guard
       
   end
 end
-

@@ -45,7 +45,7 @@ module Guard
       runner.stop
     end
 
-    def run_on_change(paths)
+    def run_on_changes(paths)
       reload
     end
   end

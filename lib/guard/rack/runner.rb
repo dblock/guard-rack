@@ -47,11 +47,20 @@ module Guard
         '--port', options[:port],
         '--pid', pid_file
       ]
+      case options[:server]
+      when "mongrel", "webrick"
+        rack_options << "--server #{options[:server]}"
+      when "thin"
+        command = "thin start"
+      when "unicorn"
+        command = "unicorn"
+      end
+      command ||= "rackup"
 
       rack_options << '--daemonize' if options[:daemon]
       rack_options << '--debug' if options[:debugger]
 
-      %{sh -c 'cd #{Dir.pwd} && rackup #{rack_options.join(' ')} &'}
+      %{sh -c 'cd #{Dir.pwd} && #{command} #{rack_options.join(' ')} &'}
     end
 
     def pid_file

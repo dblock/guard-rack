@@ -51,7 +51,7 @@ module Guard
       when "mongrel", "webrick"
         rack_options << "--server #{options[:server]}"
       when "thin"
-        command = "thin start"
+        command = "thin start -r config.ru"
       when "unicorn"
         command = "unicorn"
       end

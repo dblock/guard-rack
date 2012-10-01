@@ -55,7 +55,13 @@ describe Guard::RackRunner do
         runner.build_rack_command.should match(%r{ --debug})
       end
     end
-    
+    context "server" do
+      let(:options) { default_options.merge(:server => "thin") }
+
+      it "should honour server switch" do
+        runner.build_rack_command.should match(%r{ --server thin})
+      end
+    end
   end
 
   describe '#start' do

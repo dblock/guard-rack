@@ -50,6 +50,7 @@ module Guard
 
       rack_options << '--daemonize' if options[:daemon]
       rack_options << '--debug' if options[:debugger]
+      rack_options << ["--server",options[:server]] if options[:server]
 
       %{sh -c 'cd #{Dir.pwd} && rackup #{rack_options.join(' ')} &'}
     end

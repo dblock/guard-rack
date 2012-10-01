@@ -1,3 +1,7 @@
+Next Release
+============
+* [#9](https://github.com/dblock/guard-rack/pull/3): Added ability to specify server
+
 1.1 (06/06/2012)
 ================
 

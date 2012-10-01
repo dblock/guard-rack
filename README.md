@@ -18,7 +18,7 @@ Options
 * `:daemon` runs the server as a daemon, without any output to the terminal that ran `guard` (default `false`).
 * `:debugger` runs the server with the debugger enabled (default `false`). Required ruby-debug gem.
 * `:timeout` waits this number of seconds when restarting the Rack server before reporting there's a problem (default `20`).
-* `:server` serve using :server (webrick/mongrel/thin).
+* `:server` serve using server (one of `webrick`, `mongrel` or `thin`).
 
 Contributing
 ------------

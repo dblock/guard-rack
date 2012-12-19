@@ -1,7 +1,10 @@
-1.2 (12/19/2012)
-================
-* [#9](https://github.com/dblock/guard-rack/pull/3): Added ability to specify server - [@rubycut](https://github.com/rubycut).
+1.2.2 (12/19/2012)
+==================
 * [#10](https://github.com/dblock/guard-rack/pull/10): Added ability to specify rackup config - [@kgfullerton](https://github.com/kgfullerton).
+
+1.2.1 (6/31/2012)
+=================
+* [#9](https://github.com/dblock/guard-rack/pull/3): Added ability to specify server - [@rubycut](https://github.com/rubycut).
 
 1.1 (06/06/2012)
 ================

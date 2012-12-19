@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "guard-rack"
-  s.version = "1.2.1"
+  s.version = "1.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Doubrovkine"]
-  s.date = "2012-07-31"
+  s.date = "2012-12-19"
   s.email = "dblock@dblock.org"
   s.extra_rdoc_files = [
     "LICENSE.md",

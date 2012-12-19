@@ -43,6 +43,7 @@ module Guard
 
     def build_rack_command
       rack_options = [
+				options[:config],
         '--env', options[:environment],
         '--port', options[:port],
         '--pid', pid_file

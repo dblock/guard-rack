@@ -13,7 +13,8 @@ module Guard
         :start_on_start => true,
         :force_run => false,
         :timeout => 20,
-        :debugger => false
+        :debugger => false,
+        :config => 'config.ru'
       }
 
     def initialize(watchers = [], options = {})

@@ -7,7 +7,7 @@ describe Guard::RackRunner do
   let(:environment) { 'development' }
   let(:port) { 3000 }
   
-  let(:default_options) { { :environment => environment, :port => port } }
+  let(:default_options) { { :environment => environment, :port => port, :config => 'config.ru' } }
   let(:options) { default_options }
   
   describe '#pid' do
@@ -62,6 +62,21 @@ describe Guard::RackRunner do
         runner.build_rack_command.should match(%r{ --server thin})
       end
     end
+
+		context "config file" do
+			context "default" do
+				it "should default to config.ru" do
+					runner.build_rack_command.should match(%r{ config.ru})
+				end
+			end
+			context "custom" do
+				let(:options) { default_options.merge(:config => 'config2.ru') }
+				it "should honour config option" do
+					options = default_options.merge(:config => 'config2.ru')
+					runner.build_rack_command.should match(%r{ config2.ru})
+				end
+			end
+		end
   end
 
   describe '#start' do

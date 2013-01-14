@@ -9,6 +9,10 @@ describe Guard::RackRunner do
   let(:default_options) { { :environment => environment, :port => port, :config => 'config.ru' } }
   let(:options) { default_options }
 
+  before do
+    Guard::UI.stubs(:debug)
+  end
+
   describe '#pid' do
     context 'after running' do
       let(:pid) { 1234 }
@@ -155,7 +159,7 @@ describe Guard::RackRunner do
         before do
           Guard::UI.stubs(:info)
           wait_stub.raises(Timeout::Error)
-          Process.expects(:kill).with(9, pid)
+          Process.expects(:kill).with("TERM", pid)
         end
 
         it 'should return false' do

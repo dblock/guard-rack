@@ -10,22 +10,27 @@ module Guard
       @options = options
     end
 
-    def kill
+    def kill(pid, force = false)
       result = -1
 
-      Process.kill("INT", @pid)
-      begin
-        Timeout.timeout(options[:timeout]) do
-          UI.debug("Trying to kill Rack (PID #{@pid})...")
-          _, status = Process.wait2(@pid)
-          result = status.exitstatus
-          UI.debug("Killed Rack (Exit status: #{result})")
+      UI.debug("Trying to kill Rack (PID #{pid})...")
+      if !force
+        Process.kill("INT", pid)
+        begin
+          Timeout.timeout(options[:timeout]) do
+            _, status = Process.wait2(pid)
+            result = status.exitstatus
+            UI.debug("Killed Rack (Exit status: #{result})")
+          end
+        rescue Timeout::Error
+          UI.debug("Couldn't kill Rack with INT, switching to TERM")
+          force = true
         end
-      rescue Timeout::Error
-        UI.debug("Couldn't kill Rack with INT, switching to TERM")
-        Process.kill("TERM", @pid)
       end
-      @pid = nil
+
+      if force
+        Process.kill("TERM", pid)
+      end
 
       result
     end
@@ -40,7 +45,8 @@ module Guard
       # Rely on kill_unmanaged_pid if there's no pid
       return true unless @pid
 
-      exitstatus = kill
+      exitstatus = kill(@pid)
+      @pid = nil
       if exitstatus != 0
         UI.info "Rackup exited with non-zero exit status (#{exitstatus}) whilst trying to stop."
         return false
@@ -76,7 +82,7 @@ module Guard
 
     def kill_unmanaged_pid!
       if pid = unmanaged_pid
-        kill pid
+        kill(pid, true)
       end
     end
 

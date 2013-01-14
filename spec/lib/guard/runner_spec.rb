@@ -83,11 +83,14 @@ describe Guard::RackRunner do
   end
 
   describe '#start' do
-    let(:kill_expectation) { runner.expects(:kill_unmanaged_pid!) }
+    let(:unmanaged_pid) { 4567 }
     let(:pid) { 1234 }
+    let(:kill_expectation) { runner.expects(:kill).with(unmanaged_pid) }
+    let(:status_stub) { stub('process exit status', :exitstatus => 0) }
 
     before do
       Process.expects(:spawn).once.returns(pid)
+      runner.stubs(:unmanaged_pid).returns(unmanaged_pid)
     end
 
     context 'do not force run' do
@@ -105,6 +108,7 @@ describe Guard::RackRunner do
 
       before do
         kill_expectation.once
+        Process.expects(:wait2).never # don't wait on non-child processes
       end
 
       it "should act properly" do

@@ -85,8 +85,7 @@ describe Guard::RackRunner do
   describe '#start' do
     let(:unmanaged_pid) { 4567 }
     let(:pid) { 1234 }
-    let(:kill_expectation) { runner.expects(:kill).with(unmanaged_pid) }
-    let(:status_stub) { stub('process exit status', :exitstatus => 0) }
+    let(:kill_expectation) { Process.expects(:kill).with("TERM", unmanaged_pid) }
 
     before do
       Process.expects(:spawn).once.returns(pid)

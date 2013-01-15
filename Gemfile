@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "guard", "~> 1.1"
+gem "posix-spawn"
 
 group :development, :test do
   gem "rake"

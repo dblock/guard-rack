@@ -18,7 +18,7 @@ describe Guard::RackRunner do
       let(:pid) { 1234 }
 
       before do
-        Process.stubs(:spawn).returns(pid)
+        POSIX::Spawn.stubs(:spawn).returns(pid)
         runner.start
       end
 
@@ -37,7 +37,7 @@ describe Guard::RackRunner do
   describe '#build_rack_command' do
     context 'no daemon' do
       it "should not have a daemon switch" do
-        runner.build_rack_command.should_not match(%r{ --daemonize})
+        runner.build_rack_command.should_not include('--daemonize')
       end
     end
 
@@ -45,7 +45,7 @@ describe Guard::RackRunner do
       let(:options) { default_options.merge(:daemon => true) }
 
       it "should have a daemon switch" do
-        runner.build_rack_command.should match(%r{ --daemonize})
+        runner.build_rack_command.should include('--daemonize')
       end
     end
 
@@ -53,7 +53,7 @@ describe Guard::RackRunner do
       let(:options) { default_options.merge(:debugger => true) }
 
       it "should have a debugger switch" do
-        runner.build_rack_command.should match(%r{ --debug})
+        runner.build_rack_command.should include('--debug')
       end
     end
 
@@ -61,14 +61,17 @@ describe Guard::RackRunner do
       let(:options) { default_options.merge(:server => "thin") }
 
       it "should honour server switch" do
-        runner.build_rack_command.should match(%r{ --server thin})
+        command = runner.build_rack_command
+        index = command.index('--server')
+        index.should be >= 0
+        command[index + 1].should == 'thin'
       end
     end
 
     context "config file" do
       context "default" do
         it "should default to config.ru" do
-          runner.build_rack_command.should match(%r{ config.ru})
+          runner.build_rack_command.should include('config.ru')
         end
       end
 
@@ -76,7 +79,7 @@ describe Guard::RackRunner do
         let(:options) { default_options.merge(:config => 'config2.ru') }
         it "should honour config option" do
           options = default_options.merge(:config => 'config2.ru')
-          runner.build_rack_command.should match(%r{ config2.ru})
+          runner.build_rack_command.should include('config2.ru')
         end
       end
     end
@@ -88,7 +91,7 @@ describe Guard::RackRunner do
     let(:kill_expectation) { Process.expects(:kill).with("TERM", unmanaged_pid) }
 
     before do
-      Process.expects(:spawn).once.returns(pid)
+      POSIX::Spawn.expects(:spawn).once.returns(pid)
       runner.stubs(:unmanaged_pid).returns(unmanaged_pid)
     end
 
@@ -124,7 +127,7 @@ describe Guard::RackRunner do
       let(:wait_stub) { Process.stubs(:wait2) }
 
       before do
-        Process.stubs(:spawn).returns(pid)
+        POSIX::Spawn.stubs(:spawn).returns(pid)
         runner.start
 
         Process.expects(:kill).with('INT', pid)

@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'timeout'
+require 'posix/spawn'
 
 module Guard
   class RackRunner
@@ -60,24 +61,26 @@ module Guard
     end
 
     def build_rack_command
-      rack_options = [
+      command = %w{rackup}
+      command.push(
         options[:config],
-        '--env', options[:environment],
-        '--port', options[:port]
-      ]
+        '--env', options[:environment].to_s,
+        '--port', options[:port].to_s
+      )
 
-      rack_options << '--daemonize' if options[:daemon]
-      rack_options << '--debug' if options[:debugger]
-      rack_options << ["--server",options[:server]] if options[:server]
+      command << '--daemonize' if options[:daemon]
+      command << '--debug' if options[:debugger]
+      command.push("--server", options[:server].to_s) if options[:server]
 
-      %{rackup #{rack_options.join(' ')}}
+      command
     end
 
     private
 
     def run_rack_command!
-      UI.debug("Running Rack with command: #{build_rack_command.inspect}")
-      Process.spawn(build_rack_command)
+      command = build_rack_command
+      UI.debug("Running Rack with command: #{command.inspect}")
+      POSIX::Spawn.spawn(*command)
     end
 
     def kill_unmanaged_pid!

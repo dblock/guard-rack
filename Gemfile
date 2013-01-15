@@ -1,7 +1,10 @@
 source "http://rubygems.org"
 
 gem "guard", "~> 1.1"
-gem "posix-spawn"
+
+platforms :ruby do
+  gem "posix-spawn"
+end
 
 group :development, :test do
   gem "rake"
@@ -11,6 +14,10 @@ group :development, :test do
   gem "guard-rspec"
   gem "fakefs"
   gem "mocha"
+end
+
+group :test do
+  gem "rack"
 end
 
 require "rbconfig"

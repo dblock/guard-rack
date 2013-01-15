@@ -1,15 +1,9 @@
 require 'fileutils'
 require 'timeout'
+require 'spoon'
 
 module Guard
   class RackRunner
-
-    begin
-      require 'posix/spawn'
-      include POSIX::Spawn
-    rescue LoadError => e
-      # JRuby and possibly others
-    end
 
     attr_reader :options, :pid
 
@@ -87,6 +81,10 @@ module Guard
         command = build_rack_command
         UI.debug("Running Rack with command: #{command.inspect}")
         spawn(*command)
+      end
+
+      def spawn(* args)
+        Spoon.spawnp(* args)
       end
 
       def kill_unmanaged_pid!

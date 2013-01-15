@@ -1,6 +1,6 @@
 Next Release
 ============
-* [#11](https://github.com/dblock/guard-rack/pull/11): Use posix-spawn instead of system() - [@viking](https://github.com/viking)
+* [#11](https://github.com/dblock/guard-rack/pull/11): Use posix-spawn instead of system() - [@viking](https://github.com/viking).
 
 1.2.2 (12/19/2012)
 ==================

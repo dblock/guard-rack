@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "guard", "~> 1.1"
+gem "ffi", "~> 1.3.1"
 gem "spoon", "~> 0.0.1"
 
 group :development, :test do

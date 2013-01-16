@@ -1,3 +1,7 @@
+1.3.1 (1/16/2013)
+===============
+* [#12](https://github.com/dblock/guard-rack/issues/12): Fix: could not load 'guard/rack', added missing `ffi` into Gemfile - [@dblock](https://github.com/dblock).
+
 1.3 (1/15/2013)
 ===============
 * [#11](https://github.com/dblock/guard-rack/pull/11): Use [spoon](https://github.com/headius/spoon) instead of `system()`, removes the need for `.pid` files - [@viking](https://github.com/viking), [@dblock](https://github.com/dblock).

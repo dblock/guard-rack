@@ -1,29 +1,19 @@
 source "http://rubygems.org"
 
-gem "guard", "~> 1.1"
-gem "ffi", "~> 1.3.1"
-gem "spoon", "~> 0.0.1"
+gem "guard"
+gem "ffi"
+gem "spoon"
 
 group :development, :test do
   gem "rake"
-  gem "bundler",   "~> 1.0"
-  gem "rspec",     "~> 2.6"
-  gem "jeweler",   "~> 1.6"
+  gem "bundler"
+  gem "rspec"
   gem "guard-rspec"
   gem "fakefs"
   gem "mocha"
   gem "rack"
+  gem 'growl'
+  gem 'rb-inotify', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-fchange', require: false
 end
-
-require "rbconfig"
-
-if RbConfig::CONFIG["target_os"] =~ /darwin/i
-  gem "rb-fsevent", ">= 0.3.9"
-  gem "growl", "~> 1.0.3"
-end
-
-if RbConfig::CONFIG["target_os"] =~ /linux/i
-  gem "rb-inotify", ">= 0.5.1"
-  gem "libnotify", "~> 0.1.3"
-end
-

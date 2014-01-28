@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'bundler'
+require 'bundler/gem_tasks'
 
 require File.expand_path('../lib/guard/rack/version', __FILE__)
 

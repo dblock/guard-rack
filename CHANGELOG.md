@@ -1,6 +1,7 @@
-Next Release
-================
+1.4.0 (1/28/2014)
+=================
 
+* Ruby 1.8.7 and 1.9.2 are no longer supported - [@dblock](https://github.com/dblock).
 * [#13](https://github.com/dblock/guard-rack/pull/13): Fix: do not lock a specific version of Rack - [@Nerian](https://github.com/Nerian).
 
 1.3.1 (1/16/2013)

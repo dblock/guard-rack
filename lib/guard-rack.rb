@@ -1,2 +1,1 @@
 require 'guard/rack'
-

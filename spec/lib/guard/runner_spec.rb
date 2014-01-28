@@ -6,7 +6,7 @@ describe Guard::RackRunner do
   let(:environment) { 'development' }
   let(:port) { 3000 }
 
-  let(:default_options) { { :environment => environment, :port => port, :config => 'config.ru' } }
+  let(:default_options) { { environment: environment, port: port, config: 'config.ru' } }
   let(:options) { default_options }
 
   before do
@@ -22,13 +22,13 @@ describe Guard::RackRunner do
         runner.start
       end
 
-      it "should not be nil" do
+      it 'should not be nil' do
         runner.pid.should == pid
       end
     end
 
     context 'before running' do
-      it "should return nil" do
+      it 'should return nil' do
         runner.pid.should be_nil
       end
     end
@@ -36,31 +36,31 @@ describe Guard::RackRunner do
 
   describe '#build_rack_command' do
     context 'no daemon' do
-      it "should not have a daemon switch" do
+      it 'should not have a daemon switch' do
         runner.send(:build_rack_command).should_not include('--daemonize')
       end
     end
 
     context 'daemon' do
-      let(:options) { default_options.merge(:daemon => true) }
+      let(:options) { default_options.merge(daemon: true) }
 
-      it "should have a daemon switch" do
+      it 'should have a daemon switch' do
         runner.send(:build_rack_command).should include('--daemonize')
       end
     end
 
     context 'debugger' do
-      let(:options) { default_options.merge(:debugger => true) }
+      let(:options) { default_options.merge(debugger: true) }
 
-      it "should have a debugger switch" do
+      it 'should have a debugger switch' do
         runner.send(:build_rack_command).should include('--debug')
       end
     end
 
-    context "server" do
-      let(:options) { default_options.merge(:server => "thin") }
+    context 'server' do
+      let(:options) { default_options.merge(server: 'thin') }
 
-      it "should honour server switch" do
+      it 'should honour server switch' do
         command = runner.send(:build_rack_command)
         index = command.index('--server')
         index.should be >= 0
@@ -68,17 +68,17 @@ describe Guard::RackRunner do
       end
     end
 
-    context "config file" do
-      context "default" do
-        it "should default to config.ru" do
+    context 'config file' do
+      context 'default' do
+        it 'should default to config.ru' do
           runner.send(:build_rack_command).should include('config.ru')
         end
       end
 
-      context "custom" do
-        let(:options) { default_options.merge(:config => 'config2.ru') }
-        it "should honour config option" do
-          options = default_options.merge(:config => 'config2.ru')
+      context 'custom' do
+        let(:options) { default_options.merge(config: 'config2.ru') }
+        it 'should honour config option' do
+          default_options.merge(config: 'config2.ru')
           runner.send(:build_rack_command).should include('config2.ru')
         end
       end
@@ -88,7 +88,7 @@ describe Guard::RackRunner do
   describe '#start' do
     let(:unmanaged_pid) { 4567 }
     let(:pid) { 1234 }
-    let(:kill_expectation) { Process.expects(:kill).with("TERM", unmanaged_pid) }
+    let(:kill_expectation) { Process.expects(:kill).with('TERM', unmanaged_pid) }
 
     before do
       runner.expects(:spawn).once.returns(pid)
@@ -100,20 +100,20 @@ describe Guard::RackRunner do
         kill_expectation.never
       end
 
-      it "should act properly" do
+      it 'should act properly' do
         runner.start.should be_true
       end
     end
 
     context 'force run' do
-      let(:options) { default_options.merge(:force_run => true) }
+      let(:options) { default_options.merge(force_run: true) }
 
       before do
         kill_expectation.once
         Process.expects(:wait2).never # don't wait on non-child processes
       end
 
-      it "should act properly" do
+      it 'should act properly' do
         runner.start.should be_true
       end
     end
@@ -122,7 +122,7 @@ describe Guard::RackRunner do
   describe '#stop' do
 
     context 'pid exists' do
-      let(:pid) { 12345 }
+      let(:pid) { 12_345 }
       let(:status_stub) { stub('process exit status') }
       let(:wait_stub) { Process.stubs(:wait2) }
 
@@ -165,7 +165,7 @@ describe Guard::RackRunner do
         before do
           Guard::UI.stubs(:info)
           wait_stub.raises(Timeout::Error)
-          Process.expects(:kill).with("TERM", pid)
+          Process.expects(:kill).with('TERM', pid)
         end
 
         it 'should return false' do
@@ -179,8 +179,8 @@ describe Guard::RackRunner do
       end
     end
 
-    context "pid does not exist" do
-      it "should return true" do
+    context 'pid does not exist' do
+      it 'should return true' do
         runner.stop.should be_true
       end
     end

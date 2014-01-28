@@ -1,3 +1,8 @@
+Next Release
+================
+* [#13](https://github.com/dblock/guard-rack/pull/13) guard-rack no longer locks down to a specific rack version. - [@Nerian](https://github.com/Nerian).
+
+
 1.3.1 (1/16/2013)
 ===============
 * [#12](https://github.com/dblock/guard-rack/issues/12): Fix: could not load 'guard/rack', added missing `ffi` into Gemfile - [@dblock](https://github.com/dblock).

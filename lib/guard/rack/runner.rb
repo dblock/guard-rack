@@ -37,7 +37,7 @@ module Guard
     private
 
     def build_rack_command
-      command = %w{rackup}
+      command = %w(rackup)
       command.push(
         options[:config],
         '--env', options[:environment].to_s,
@@ -90,7 +90,7 @@ module Guard
     end
 
     def unmanaged_pid
-      %x{lsof -n -i TCP:#{options[:port]}}.each_line do |line|
+      `lsof -n -i TCP:#{options[:port]}`.each_line do |line|
         return line.split("\s")[1].to_i if line["*:#{options[:port]} "]
       end
       nil

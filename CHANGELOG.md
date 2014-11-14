@@ -1,3 +1,9 @@
+1.4.1 (Next)
+============
+
+* Upgraded RuboCop to 0.27.1 - [@dblock](https://github.com/dblock).
+* Your contribution here.
+
 1.4.0 (1/28/2014)
 =================
 

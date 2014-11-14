@@ -1,20 +1,20 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem "guard"
-gem "ffi"
-gem "spoon"
+gem 'guard'
+gem 'ffi'
+gem 'spoon'
 
 group :development, :test do
-  gem "rake"
-  gem "bundler"
-  gem "rspec"
-  gem "guard-rspec"
-  gem "fakefs"
-  gem "mocha"
-  gem "rack"
+  gem 'rake'
+  gem 'bundler'
+  gem 'rspec'
+  gem 'guard-rspec'
+  gem 'fakefs'
+  gem 'mocha'
+  gem 'rack'
   gem 'growl'
   gem 'rb-inotify', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-fchange', require: false
-  gem 'rubocop'
+  gem 'rubocop', '0.27.1'
 end

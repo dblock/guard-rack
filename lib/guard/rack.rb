@@ -8,14 +8,14 @@ module Guard
     attr_reader :options, :runner
 
     DEFAULT_OPTIONS = {
-        port: 9292,
-        environment: 'development',
-        start_on_start: true,
-        force_run: false,
-        timeout: 20,
-        debugger: false,
-        config: 'config.ru'
-      }
+      port: 9292,
+      environment: 'development',
+      start_on_start: true,
+      force_run: false,
+      timeout: 20,
+      debugger: false,
+      config: 'config.ru'
+    }
 
     def initialize(watchers = [], options = {})
       super
@@ -46,7 +46,7 @@ module Guard
       runner.stop
     end
 
-    def run_on_changes(paths)
+    def run_on_changes(_paths)
       reload
     end
   end

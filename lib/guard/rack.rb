@@ -1,10 +1,10 @@
 require 'guard'
-require 'guard/guard'
+require 'guard/plugin'
 require 'guard/rack/runner'
 require 'rbconfig'
 
 module Guard
-  class Rack < ::Guard::Guard
+  class Rack < ::Guard::Plugin
     attr_reader :options, :runner
 
     DEFAULT_OPTIONS = {
@@ -17,7 +17,7 @@ module Guard
       config: 'config.ru'
     }
 
-    def initialize(watchers = [], options = {})
+    def initialize(options = {})
       super
       @options = DEFAULT_OPTIONS.merge(options)
       @runner = ::Guard::RackRunner.new(@options)

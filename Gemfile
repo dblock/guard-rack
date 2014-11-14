@@ -1,17 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'guard'
+gemspec
+
 gem 'ffi'
 gem 'spoon'
+gem 'guard', '~> 2.3.0'
 
 group :development, :test do
-  gem 'rake'
-  gem 'bundler'
-  gem 'rspec'
-  gem 'guard-rspec'
-  gem 'fakefs'
-  gem 'mocha'
-  gem 'rack'
+  gem 'guard-rspec', '~> 4.2.5'
   gem 'growl'
   gem 'rb-inotify', require: false
   gem 'rb-fsevent', require: false

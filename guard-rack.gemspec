@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split("\n")
   gem.version       = Guard::RackVersion::VERSION
 
-  gem.add_dependency 'guard'
+  gem.add_dependency 'guard', '~> 2.3'
   gem.add_dependency 'ffi'
   gem.add_dependency 'spoon'
   gem.add_dependency 'rb-inotify'
@@ -23,8 +23,8 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'bundler'
-  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rspec', '~> 2.99.0'
   gem.add_development_dependency 'fakefs'
-  gem.add_development_dependency 'mocha'
+  gem.add_development_dependency 'mocha', '~> 1.0.0'
   gem.add_development_dependency 'rack'
 end

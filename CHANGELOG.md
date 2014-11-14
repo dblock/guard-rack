@@ -2,6 +2,7 @@
 ============
 
 * Upgraded RuboCop to 0.27.1 - [@dblock](https://github.com/dblock).
+* Upgraded RSpec to 3.x - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 1.4.0 (1/28/2014)

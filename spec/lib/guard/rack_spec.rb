@@ -10,7 +10,7 @@ describe Guard::Rack do
     it 'should initialize with options' do
       guard
 
-      guard.runner.options[:port].should == 9292
+      expect(guard.runner.options[:port]).to eq(9292)
     end
   end
 

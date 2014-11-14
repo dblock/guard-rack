@@ -23,13 +23,13 @@ describe Guard::RackRunner do
       end
 
       it 'should not be nil' do
-        runner.pid.should == pid
+        expect(runner.pid).to eq(pid)
       end
     end
 
     context 'before running' do
       it 'should return nil' do
-        runner.pid.should be_nil
+        expect(runner.pid).to be_nil
       end
     end
   end
@@ -37,7 +37,7 @@ describe Guard::RackRunner do
   describe '#build_rack_command' do
     context 'no daemon' do
       it 'should not have a daemon switch' do
-        runner.send(:build_rack_command).should_not include('--daemonize')
+        expect(runner.send(:build_rack_command)).not_to include('--daemonize')
       end
     end
 
@@ -45,7 +45,7 @@ describe Guard::RackRunner do
       let(:options) { default_options.merge(daemon: true) }
 
       it 'should have a daemon switch' do
-        runner.send(:build_rack_command).should include('--daemonize')
+        expect(runner.send(:build_rack_command)).to include('--daemonize')
       end
     end
 
@@ -53,7 +53,7 @@ describe Guard::RackRunner do
       let(:options) { default_options.merge(debugger: true) }
 
       it 'should have a debugger switch' do
-        runner.send(:build_rack_command).should include('--debug')
+        expect(runner.send(:build_rack_command)).to include('--debug')
       end
     end
 
@@ -63,15 +63,15 @@ describe Guard::RackRunner do
       it 'should honour server switch' do
         command = runner.send(:build_rack_command)
         index = command.index('--server')
-        index.should be >= 0
-        command[index + 1].should == 'thin'
+        expect(index).to be >= 0
+        expect(command[index + 1]).to eq('thin')
       end
     end
 
     context 'config file' do
       context 'default' do
         it 'should default to config.ru' do
-          runner.send(:build_rack_command).should include('config.ru')
+          expect(runner.send(:build_rack_command)).to include('config.ru')
         end
       end
 
@@ -79,7 +79,7 @@ describe Guard::RackRunner do
         let(:options) { default_options.merge(config: 'config2.ru') }
         it 'should honour config option' do
           default_options.merge(config: 'config2.ru')
-          runner.send(:build_rack_command).should include('config2.ru')
+          expect(runner.send(:build_rack_command)).to include('config2.ru')
         end
       end
     end
@@ -101,7 +101,7 @@ describe Guard::RackRunner do
       end
 
       it 'should act properly' do
-        runner.start.should be_true
+        expect(runner.start).to be_truthy
       end
     end
 
@@ -114,7 +114,7 @@ describe Guard::RackRunner do
       end
 
       it 'should act properly' do
-        runner.start.should be_true
+        expect(runner.start).to be_truthy
       end
     end
   end
@@ -140,7 +140,7 @@ describe Guard::RackRunner do
         end
 
         it 'should return true' do
-          runner.stop.should be_true
+          expect(runner.stop).to be_truthy
         end
       end
 
@@ -152,7 +152,7 @@ describe Guard::RackRunner do
         end
 
         it 'should return false' do
-          runner.stop.should be_false
+          expect(runner.stop).to be_falsey
         end
 
         it 'should send some kind of message to UI.info' do
@@ -169,7 +169,7 @@ describe Guard::RackRunner do
         end
 
         it 'should return false' do
-          runner.stop.should be_false
+          expect(runner.stop).to be_falsey
         end
 
         it 'should send some kind of message to UI.info' do
@@ -181,7 +181,7 @@ describe Guard::RackRunner do
 
     context 'pid does not exist' do
       it 'should return true' do
-        runner.stop.should be_true
+        expect(runner.stop).to be_truthy
       end
     end
   end

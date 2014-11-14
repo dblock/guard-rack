@@ -8,10 +8,10 @@ describe 'Integration' do
   describe '#start' do
     context 'run' do
       it 'should run' do
-        runner.start.should be_true
+        expect(runner.start).to be_truthy
         pid = runner.pid
-        pid.should_not be_nil
-        Process.getpgid(pid).should be > 0
+        expect(pid).not_to be_nil
+        expect(Process.getpgid(pid)).to be > 0
         runner.stop
         expect do
           Process.getpgid(pid)

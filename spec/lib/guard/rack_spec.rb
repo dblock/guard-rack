@@ -2,8 +2,7 @@ require 'spec_helper'
 require 'guard/rack'
 
 describe Guard::Rack do
-  let(:guard) { Guard::Rack.new(watchers, options) }
-  let(:watchers) { [] }
+  let(:guard) { Guard::Rack.new(options) }
   let(:options) { {} }
 
   describe '#initialize' do

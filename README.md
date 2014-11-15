@@ -31,5 +31,5 @@ Copyright and License
 
 MIT License, see [LICENSE](http://github.com/dblock/guard-rack/raw/master/LICENSE.md) for details.
 
-(c) 2012 [Daniel Doubrovkine](http://github.com/dblock)
+(c) 2012-2014 [Daniel Doubrovkine](http://github.com/dblock) and [Contributors](https://github.com/dblock/guard-rack/graphs/contributors).
 

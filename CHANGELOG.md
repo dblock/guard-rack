@@ -1,10 +1,9 @@
-2.0.0 (Next)
-============
+2.0.0 (11/15/2014)
+==================
 
 * Upgraded to Guard 2.x - [@jdurand](https://github.com/jdurand).
 * Upgraded RuboCop to 0.27.1 - [@dblock](https://github.com/dblock).
 * Upgraded RSpec to 3.x - [@dblock](https://github.com/dblock).
-* Your contribution here.
 
 1.4.0 (1/28/2014)
 =================

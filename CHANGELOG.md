@@ -1,6 +1,7 @@
 2.1.0 (Next)
 ============
 
+* [#17](https://github.com/dblock/guard-rack/pull/17): Added ability to specify host - [@jwhitcraft](https://github.com/jwhitcraft).
 * Your contribution here.
 
 2.0.0 (11/15/2014)

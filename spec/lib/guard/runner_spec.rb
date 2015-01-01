@@ -6,7 +6,7 @@ describe Guard::RackRunner do
   let(:environment) { 'development' }
   let(:port) { 3000 }
 
-  let(:default_options) { { environment: environment, port: port, config: 'config.ru' } }
+  let(:default_options) { { environment: environment, port: port, config: 'config.ru', host: '0.0.0.0' } }
   let(:options) { default_options }
 
   before do
@@ -80,6 +80,22 @@ describe Guard::RackRunner do
         it 'should honour config option' do
           default_options.merge(config: 'config2.ru')
           expect(runner.send(:build_rack_command)).to include('config2.ru')
+        end
+      end
+    end
+
+    context 'host' do
+      context 'default' do
+        it 'should default to 0.0.0.0' do
+          expect(runner.send(:build_rack_command)).to include('0.0.0.0')
+        end
+      end
+
+      context 'custom' do
+        let(:options) { default_options.merge(host: '127.0.0.0') }
+        it 'should honour config option' do
+          default_options.merge(host: '127.0.0.0')
+          expect(runner.send(:build_rack_command)).to include('127.0.0.0')
         end
       end
     end

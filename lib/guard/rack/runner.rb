@@ -41,6 +41,7 @@ module Guard
       command.push(
         options[:config],
         '--env', options[:environment].to_s,
+        '--host', options[:host].to_s,
         '--port', options[:port].to_s
       )
 

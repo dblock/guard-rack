@@ -9,6 +9,7 @@ module Guard
 
     DEFAULT_OPTIONS = {
       port: 9292,
+      host: '0.0.0.0',
       environment: 'development',
       start_on_start: true,
       force_run: false,

@@ -18,8 +18,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'guard', '~> 2.3'
   gem.add_dependency 'ffi'
   gem.add_dependency 'spoon'
-  gem.add_dependency 'rb-inotify'
-  gem.add_dependency 'libnotify'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'bundler'

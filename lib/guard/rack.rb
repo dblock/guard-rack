@@ -4,7 +4,7 @@ require 'guard/rack/runner'
 require 'rbconfig'
 
 module Guard
-  class Rack < ::Guard::Plugin
+  class Rack < Plugin
     attr_reader :options, :runner
 
     DEFAULT_OPTIONS = {
@@ -22,7 +22,7 @@ module Guard
     def initialize(options = {})
       super
       @options = DEFAULT_OPTIONS.merge(options)
-      @runner = ::Guard::RackRunner.new(@options)
+      @runner = ::Guard::Rack::Runner.new(@options)
     end
 
     def start

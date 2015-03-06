@@ -1,8 +1,7 @@
 require 'spec_helper'
-require 'guard/rack/runner'
 
 describe 'Integration' do
-  let(:runner) { Guard::RackRunner.new(options) }
+  let(:runner) { Guard::Rack::Runner.new(options) }
   let(:options) { { cmd: 'rackup', environment: 'development', port: 3000, config: 'spec/lib/guard/integration.ru' } }
 
   describe '#start' do

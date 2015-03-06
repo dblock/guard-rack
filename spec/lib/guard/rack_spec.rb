@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'guard/rack'
 
 describe Guard::Rack do
   let(:guard) { Guard::Rack.new(options) }
@@ -41,10 +40,10 @@ describe Guard::Rack do
     before do
       Guard::UI.expects(:info).with('Restarting Rack...')
       Guard::Notifier.expects(:notify).with(regexp_matches(/Rack restarting/), has_entry(image: :pending))
-      Guard::RackRunner.any_instance.stubs(:pid).returns(pid)
+      Guard::Rack::Runner.any_instance.stubs(:pid).returns(pid)
     end
 
-    let(:runner_stub) { Guard::RackRunner.any_instance.stubs(:restart) }
+    let(:runner_stub) { Guard::Rack::Runner.any_instance.stubs(:restart) }
 
     context 'with pid file' do
       before do

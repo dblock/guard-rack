@@ -1,8 +1,7 @@
 require 'spec_helper'
-require 'guard/rack/runner'
 
-describe Guard::RackRunner do
-  let(:runner) { Guard::RackRunner.new(options) }
+describe Guard::Rack::Runner do
+  let(:runner) { Guard::Rack::Runner.new(options) }
   let(:environment) { 'development' }
   let(:port) { 3000 }
 

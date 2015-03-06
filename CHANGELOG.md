@@ -1,10 +1,9 @@
-2.1.0 (Next)
+2.1.0 (03/06/2015)
 ============
 
 * [#17](https://github.com/dblock/guard-rack/pull/17): Added ability to specify host - [@jwhitcraft](https://github.com/jwhitcraft).
 * [#18](https://github.com/dblock/guard-rack/pull/18): Removed explicit dependencies on notification libraries, relying instead on Guard's default behavior - [@michaelherold](https://github.com/michaelherold).
 * [#19](https://github.com/dblock/guard-rack/pull/19): Added the ability to specify the command for mounting the Rack application - [@michaelherold](https://github.com/michaelherold).
-* Your contribution here.
 
 2.0.0 (11/15/2014)
 ==================

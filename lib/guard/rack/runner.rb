@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'timeout'
 require 'spoon'
+require 'guard/rack/command'
 
 module Guard
   class RackRunner
@@ -36,22 +37,6 @@ module Guard
 
     private
 
-    def build_rack_command
-      command = %w(rackup)
-      command.push(
-        options[:config],
-        '--env', options[:environment].to_s,
-        '--host', options[:host].to_s,
-        '--port', options[:port].to_s
-      )
-
-      command << '--daemonize' if options[:daemon]
-      command << '--debug' if options[:debugger]
-      command.push('--server', options[:server].to_s) if options[:server]
-
-      command
-    end
-
     def kill(pid, force = false)
       result = -1
 
@@ -76,8 +61,8 @@ module Guard
     end
 
     def run_rack_command!
-      command = build_rack_command
-      UI.debug("Running Rack with command: #{command.inspect}")
+      command = Guard::Rack::Command.new(options)
+      UI.debug("Running Rack with command: #{command}")
       spawn(*command)
     end
 

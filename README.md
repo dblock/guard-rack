@@ -16,6 +16,7 @@ Want to restart your Rack development with *rackup* whilst you work? Now you can
 Options
 -------
 
+* `:cmd` is the command to run to mount the Rack application (default `rackup`).
 * `:host` is the host ip address to run on (default `0.0.0.0`).
 * `:port` is the port number to run on (default `9292`).
 * `:environment` is the environment to use (default `development`).
@@ -37,5 +38,5 @@ Copyright and License
 
 MIT License, see [LICENSE](http://github.com/dblock/guard-rack/raw/master/LICENSE.md) for details.
 
-(c) 2012-2014 [Daniel Doubrovkine](http://github.com/dblock) and [Contributors](https://github.com/dblock/guard-rack/graphs/contributors).
+(c) 2012-2015 [Daniel Doubrovkine](http://github.com/dblock) and [Contributors](https://github.com/dblock/guard-rack/graphs/contributors).
 

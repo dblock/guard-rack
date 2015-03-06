@@ -15,7 +15,8 @@ module Guard
       force_run: false,
       timeout: 20,
       debugger: false,
-      config: 'config.ru'
+      config: 'config.ru',
+      cmd: 'rackup'
     }
 
     def initialize(options = {})

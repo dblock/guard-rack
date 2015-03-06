@@ -34,73 +34,6 @@ describe Guard::RackRunner do
     end
   end
 
-  describe '#build_rack_command' do
-    context 'no daemon' do
-      it 'should not have a daemon switch' do
-        expect(runner.send(:build_rack_command)).not_to include('--daemonize')
-      end
-    end
-
-    context 'daemon' do
-      let(:options) { default_options.merge(daemon: true) }
-
-      it 'should have a daemon switch' do
-        expect(runner.send(:build_rack_command)).to include('--daemonize')
-      end
-    end
-
-    context 'debugger' do
-      let(:options) { default_options.merge(debugger: true) }
-
-      it 'should have a debugger switch' do
-        expect(runner.send(:build_rack_command)).to include('--debug')
-      end
-    end
-
-    context 'server' do
-      let(:options) { default_options.merge(server: 'thin') }
-
-      it 'should honour server switch' do
-        command = runner.send(:build_rack_command)
-        index = command.index('--server')
-        expect(index).to be >= 0
-        expect(command[index + 1]).to eq('thin')
-      end
-    end
-
-    context 'config file' do
-      context 'default' do
-        it 'should default to config.ru' do
-          expect(runner.send(:build_rack_command)).to include('config.ru')
-        end
-      end
-
-      context 'custom' do
-        let(:options) { default_options.merge(config: 'config2.ru') }
-        it 'should honour config option' do
-          default_options.merge(config: 'config2.ru')
-          expect(runner.send(:build_rack_command)).to include('config2.ru')
-        end
-      end
-    end
-
-    context 'host' do
-      context 'default' do
-        it 'should default to 0.0.0.0' do
-          expect(runner.send(:build_rack_command)).to include('0.0.0.0')
-        end
-      end
-
-      context 'custom' do
-        let(:options) { default_options.merge(host: '127.0.0.0') }
-        it 'should honour config option' do
-          default_options.merge(host: '127.0.0.0')
-          expect(runner.send(:build_rack_command)).to include('127.0.0.0')
-        end
-      end
-    end
-  end
-
   describe '#start' do
     let(:unmanaged_pid) { 4567 }
     let(:pid) { 1234 }
@@ -136,7 +69,6 @@ describe Guard::RackRunner do
   end
 
   describe '#stop' do
-
     context 'pid exists' do
       let(:pid) { 12_345 }
       let(:status_stub) { stub('process exit status') }

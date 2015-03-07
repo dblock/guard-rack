@@ -4,6 +4,7 @@ gem 'rake'
 
 group :development do
   gem 'guard-rspec', '~> 4.5'
+  gem 'guard-rubocop'
   gem 'rubocop', '0.29.1'
 end
 

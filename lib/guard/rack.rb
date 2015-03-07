@@ -1,6 +1,5 @@
 require 'guard/compat/plugin'
 require 'guard/rack/runner'
-require 'rbconfig'
 
 module Guard
   class Rack < Plugin
@@ -21,7 +20,7 @@ module Guard
     def initialize(options = {})
       super
       @options = DEFAULT_OPTIONS.merge(options)
-      @runner = ::Guard::Rack::Runner.new(@options)
+      @runner = Runner.new(@options)
     end
 
     def start

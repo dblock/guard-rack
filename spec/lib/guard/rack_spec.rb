@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'guard/rack'
 
 describe Guard::Rack do
   let(:guard) { Guard::Rack.new(options) }

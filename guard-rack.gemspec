@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Guard::RackVersion::VERSION
 
   gem.add_dependency 'guard', '~> 2.3'
+  gem.add_dependency 'guard-compat', '~> 1.0'
   gem.add_dependency 'ffi'
   gem.add_dependency 'spoon'
 

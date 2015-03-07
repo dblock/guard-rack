@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'guard/rack/runner'
 
 describe Guard::Rack::Runner do
   let(:runner) { Guard::Rack::Runner.new(options) }

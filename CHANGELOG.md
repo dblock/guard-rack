@@ -1,7 +1,7 @@
 2.2.0 (Next)
 ============
 
-* Your contribution here.
+* Switch to using guard-compat to ensure compatibility with current guard versions. We're now working with everything between 2.3 and the current 2.12.4 - [@michaelherold](https://github.com/michaelherold).
 
 2.1.1 (03/07/2015)
 ============

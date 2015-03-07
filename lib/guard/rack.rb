@@ -1,5 +1,4 @@
-require 'guard'
-require 'guard/plugin'
+require 'guard/compat/plugin'
 require 'guard/rack/runner'
 require 'rbconfig'
 

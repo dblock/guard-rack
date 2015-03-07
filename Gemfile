@@ -9,9 +9,11 @@ group :development do
 end
 
 group :test do
+  gem 'coveralls'
   gem 'mocha', '~> 1.1'
   gem 'rack'
   gem 'rspec', '~> 3.0'
+  gem 'simplecov', '~> 0.9'
 end
 
 gemspec

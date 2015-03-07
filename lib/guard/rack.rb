@@ -1,25 +1,15 @@
 require 'guard/compat/plugin'
+
+require 'guard/rack/options'
 require 'guard/rack/runner'
 
 module Guard
   class Rack < Plugin
     attr_reader :options, :runner
 
-    DEFAULT_OPTIONS = {
-      port: 9292,
-      host: '0.0.0.0',
-      environment: 'development',
-      start_on_start: true,
-      force_run: false,
-      timeout: 20,
-      debugger: false,
-      config: 'config.ru',
-      cmd: 'rackup'
-    }
-
     def initialize(options = {})
       super
-      @options = DEFAULT_OPTIONS.merge(options)
+      @options = Options.with_defaults(options)
       @runner = Runner.new(@options)
     end
 

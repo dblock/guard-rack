@@ -14,7 +14,7 @@ describe Guard::Rack do
   end
 
   describe '#start' do
-    let(:ui_expectation) { Guard::UI.expects(:info).with(regexp_matches(/#{Guard::Rack::DEFAULT_OPTIONS[:port]}/)) }
+    let(:ui_expectation) { Guard::UI.expects(:info).with(regexp_matches(/9292/)) }
 
     context 'start on start' do
       it 'should show the right message and run startup' do

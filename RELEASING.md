@@ -12,6 +12,8 @@ bundle install
 rake
 ```
 
+Check that the current master branch can successfully run [grape-on-rack](https://github.com/dblock/grape-on-rack).
+
 Check that the last build succeeded in [Travis CI](https://travis-ci.org/dblock/guard-rack) for all supported platforms.
 
 Increment the version, modify [lib/guard/rack/version.rb](lib/guard/rack/version.rb).

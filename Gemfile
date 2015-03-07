@@ -4,7 +4,7 @@ gem 'rake'
 
 group :development do
   gem 'guard-rspec', '~> 4.5'
-  gem 'rubocop', '0.27.1'
+  gem 'rubocop', '0.29.1'
 end
 
 group :test do

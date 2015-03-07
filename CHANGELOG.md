@@ -1,7 +1,7 @@
-2.2.0 (Next)
+2.1.1 (03/07/2015)
 ============
 
-* Your contribution here.
+* Fixed an issue with the command syntax that was preventing the spawner from running - [@michaelherold](https://github.com/michaelherold).
 
 2.1.0 (03/06/2015)
 ============

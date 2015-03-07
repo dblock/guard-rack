@@ -2,15 +2,12 @@ require 'guard/rack'
 
 module Guard
   class Rack < Plugin
-    class Command < String
+    class Command
       attr_reader :options
 
       def initialize(options = {})
         @options = options
-        super(build.join(' '))
       end
-
-      private
 
       def build
         cmd = [options[:cmd]]
@@ -26,6 +23,8 @@ module Guard
         cmd.flatten.compact
       end
 
+      private
+
       def configuration
         [options[:config]]
       end
@@ -33,17 +32,17 @@ module Guard
       def daemon
         return unless options[:daemon]
 
-        ['--daemonize', options[:daemon]]
+        ['--daemonize']
       end
 
       def debug
         return unless options[:debugger]
 
-        ['--debug', options[:debugger]]
+        ['--debug']
       end
 
       def environment
-        ['--env', options[:environment]]
+        ['--env', options[:environment].to_s]
       end
 
       def host
@@ -51,13 +50,13 @@ module Guard
       end
 
       def port
-        ['--port', options[:port]]
+        ['--port', options[:port].to_s]
       end
 
       def server
         return unless options[:server]
 
-        ['--server', options[:server]]
+        ['--server', options[:server].to_s]
       end
     end
   end

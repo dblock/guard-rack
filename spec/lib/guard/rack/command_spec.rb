@@ -8,14 +8,14 @@ describe Guard::Rack::Command do
   let(:options) { default_options }
   let(:command) { Guard::Rack::Command.new(options) }
 
-  describe '.initialize' do
-    subject { command }
+  describe '#build' do
+    subject { command.build }
 
     it { is_expected.to start_with('rackup') }
     it { is_expected.to include('config.ru') }
-    it { is_expected.to include('--env development') }
-    it { is_expected.to include('--host 0.0.0.0') }
-    it { is_expected.to include('--port 3000') }
+    it { is_expected.to include('--env').and include('development') }
+    it { is_expected.to include('--host').and include('0.0.0.0') }
+    it { is_expected.to include('--port').and include('3000') }
     it { is_expected.not_to include('--daemonize') }
     it { is_expected.not_to include('--debug') }
     it { is_expected.not_to include('--server') }
@@ -41,13 +41,13 @@ describe Guard::Rack::Command do
     context 'with an environment configuration' do
       let(:options) { default_options.merge(environment: 'custom') }
 
-      it { is_expected.to include('--env custom') }
+      it { is_expected.to include('--env').and include('custom') }
     end
 
     context 'with a server configuration' do
       let(:options) { default_options.merge(server: 'thin') }
 
-      it { is_expected.to include('--server thin') }
+      it { is_expected.to include('--server').and include('thin') }
     end
 
     context 'with a custom config file configuration' do

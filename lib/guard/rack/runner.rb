@@ -61,7 +61,7 @@ module Guard
     end
 
     def run_rack_command!
-      command = Guard::Rack::Command.new(options)
+      command = Guard::Rack::Command.new(options).build
       UI.debug("Running Rack with command: #{command}")
       spawn(*command)
     end

@@ -1,12 +1,16 @@
 source 'http://rubygems.org'
 
-gemspec
+gem 'rake'
 
-group :development, :test do
+group :development do
   gem 'guard-rspec', '~> 4.2.5'
-  gem 'growl'
-  gem 'rb-inotify', require: false
-  gem 'rb-fsevent', require: false
-  gem 'rb-fchange', require: false
   gem 'rubocop', '0.27.1'
 end
+
+group :test do
+  gem 'mocha', '~> 1.1'
+  gem 'rack'
+  gem 'rspec', '~> 3.0'
+end
+
+gemspec

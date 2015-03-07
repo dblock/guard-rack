@@ -1,7 +1,10 @@
 *.gem
 .bundle
+.yardoc
 Gemfile.lock
 pkg/*
 .rvmrc
 .redcar
 /coverage/
+/doc/
+/measurement/

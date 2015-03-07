@@ -1,0 +1,8 @@
+--no-private
+--protected
+--markup markdown
+-
+CHANGELOG.md
+LICENSE.md
+README.md
+RELEASING.md

@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rake'
+gem 'yard'
 
 group :development do
   gem 'guard-rspec', '~> 4.5'
@@ -14,6 +15,7 @@ group :test do
   gem 'rack'
   gem 'rspec', '~> 3.0'
   gem 'simplecov', '~> 0.9'
+  gem 'yardstick'
 end
 
 gemspec

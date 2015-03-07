@@ -23,4 +23,18 @@ require 'rainbow/ext/string' unless String.respond_to?(:color)
 require 'rubocop/rake_task'
 RuboCop::RakeTask.new(:rubocop)
 
-task default: [:rubocop, :spec]
+require 'yard'
+YARD::Rake::YardocTask.new
+
+require 'yardstick/rake/measurement'
+Yardstick::Rake::Measurement.new do |measurement|
+  measurement.output = 'measurement/report.txt'
+end
+
+require 'yardstick/rake/verify'
+Yardstick::Rake::Verify.new do |verify|
+  verify.threshold = 48.2
+  verify.require_exact_threshold = false
+end
+
+task default: [:spec, :rubocop, :verify_measurements]

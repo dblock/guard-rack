@@ -34,8 +34,7 @@ module Guard
     # @example
     #   Guard::Rack.new(cmd: 'bundle exec rackup')
     #
-    # @param options [Hash] The Guard plugin options run from the
-    #   Guardfile
+    # @param options [Hash] The Guard plugin options run from the Guardfile
     # @option options [String] :cmd ('rackup') The command used to launch Rack
     # @option options [String] :config ('config.ru') The Rack configuration file
     # @option options [Boolean] :debugger (false) A flag indicating whether to run in debug mode
@@ -45,6 +44,7 @@ module Guard
     # @option options [Integer] :port (9292) The port for Rack to listen on
     # @option options [Boolean] :start_on_start (true) A flag indicating whether to start the Rack instance upon starting Guard
     # @option options [Integer] :timeout (20) The number of seconds to wait for Rack to start up before failing
+    #
     # @return [Guard::Rack] The plugin instance
     def initialize(options = {})
       super

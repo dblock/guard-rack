@@ -14,6 +14,15 @@ module Guard
       }
 
       class << self
+        # Merges the passed options with the plugin defaults
+        #
+        # @api public
+        #
+        # @example
+        #   Guard::Rack::Options.with_defaults({cmd: 'bundle exec rackup'})
+        #     #=> {cmd: 'bundle exec rackup', config: 'config.ru', ...}
+        #
+        # @return [Hash] The merged options
         def with_defaults(options = {})
           DEFAULTS.merge(options)
         end

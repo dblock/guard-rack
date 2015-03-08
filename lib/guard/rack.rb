@@ -7,40 +7,60 @@ module Guard
   class Rack < Plugin
     # The options passed to the Rack command when loading or reloading
     #
-    # @example
-    #   options #=> {cmd: 'rackup', host: '0.0.0.0', port: 9292}
     # @api public
+    #
+    # @example
+    #   Guard::Rack.new.options #=> {cmd: 'rackup', host: '0.0.0.0', port: 9292}
+    #
     # @attr_reader options [Hash]
     # @return [Hash]
     attr_reader :options
 
     # The Guard runner that handles the loading and reloading of Rack
     #
-    # @example
-    #   runner #=> #<Guard::Rack::Runner:... @options={...}>
     # @api public
+    #
+    # @example
+    #   Guard::Rack.new.runner #=> #<Guard::Rack::Runner:... @options={...}>
+    #
     # @attr_reader runner [Guard::Rack::Runner]
     # @return [Guard::Rack::Runner]
     attr_reader :runner
 
     # Creates a new instance of the Rack reloading Guard plugin
     #
+    # @api public
+    #
     # @example
     #   Guard::Rack.new(cmd: 'bundle exec rackup')
-    # @api public
-    # @return [Guard::Rack]
+    #
+    # @param options [Hash] The Guard plugin options run from the
+    #   Guardfile
+    # @option options [String] :cmd ('rackup') The command used to launch Rack
+    # @option options [String] :config ('config.ru') The Rack configuration file
+    # @option options [Boolean] :debugger (false) A flag indicating whether to run in debug mode
+    # @option options [String, Symbol] :environment ('development') The Rack environment to use
+    # @option options [Boolean] :force_run (false) A flag indicating whether to kill any program listening to the Rack port
+    # @option options [String] :host ('0.0.0.0') The IP for Rack to listen on
+    # @option options [Integer] :port (9292) The port for Rack to listen on
+    # @option options [Boolean] :start_on_start (true) A flag indicating whether to start the Rack instance upon starting Guard
+    # @option options [Integer] :timeout (20) The number of seconds to wait for Rack to start up before failing
+    # @return [Guard::Rack] The plugin instance
     def initialize(options = {})
       super
       @options = Options.with_defaults(options)
       @runner = Runner.new(@options)
     end
 
-    # Starts the instance of Rack managed by the Guard plugin
-    #
-    # @example
-    #   start
+    # @!group Guard Events
+
+    # Called when Guard starts
     #
     # @api public
+    #
+    # @example
+    #   Guard::Rack.new.start
+    #
     # @return [void]
     def start
       server = options[:server] ? "#{options[:server]} and " : ''
@@ -48,11 +68,13 @@ module Guard
       reload if options[:start_on_start]
     end
 
-    # Reloads the instance of Rack managed by the Guard plugin
+    # Called when Guard reloads
+    #
+    # @api public
     #
     # @example
-    #   reload
-    # @api public
+    #   Guard::Rack.new.reload
+    #
     # @return [void]
     def reload
       UI.info 'Restarting Rack...'
@@ -66,25 +88,31 @@ module Guard
       end
     end
 
-    # Stops the instance of Rack managed by the Guard plugin
+    # Called when Guard quits
+    #
+    # @api public
     #
     # @example
-    #   stop
-    # @api public
+    #   Guard::Rack.new.stop
+    #
     # @return [void]
     def stop
       Notifier.notify('Until next time...', title: 'Rack shutting down.', image: :pending)
       runner.stop
     end
 
-    # Reloads the instance of Rack whenever the Guard-watched files are changes
+    # Called when any watched file is changed
+    #
+    # @api public
     #
     # @example
-    #   run_on_changes([...])
-    # @api public
+    #   Guard::Rack.new.run_on_changes([...])
+    #
     # @return [void]
-    def run_on_changes(_paths)
+    def run_on_changes(*)
       reload
     end
+
+    # @!endgroup
   end
 end

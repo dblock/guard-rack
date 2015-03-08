@@ -5,6 +5,7 @@ Guard::Rack
 [![Build Status](http://img.shields.io/travis/dblock/guard-rack.svg)](https://travis-ci.org/dblock/guard-rack)
 [![Dependency Status](https://gemnasium.com/dblock/guard-rack.svg)](https://gemnasium.com/dblock/guard-rack)
 [![Code Climate](https://codeclimate.com/github/dblock/guard-rack.svg)](https://codeclimate.com/github/dblock/guard-rack)
+[![Coverage Status](https://coveralls.io/repos/dblock/guard-rack/badge.svg)](https://coveralls.io/r/dblock/guard-rack)
 [![Docs Coverage](http://inch-ci.org/github/dblock/guard-rack.svg)](http://inch-ci.org/github/dblock/guard-rack)
 
 Want to restart your Rack development with *rackup* whilst you work? Now you can!

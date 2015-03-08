@@ -25,6 +25,8 @@ module Guard
       #   command.new(cmd: 'rackup', host: '0.0.0.0', port: 9292,
       #               environment: 'development')
       #
+      # @see Guard::Rack For the possible options
+      #
       # @return [Guard::Rack::Command]
       def initialize(options = {})
         @options = options

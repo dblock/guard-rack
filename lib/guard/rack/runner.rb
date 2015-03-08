@@ -38,16 +38,7 @@ module Guard
       # @example
       #   Guard::Rack::Runner.new
       #
-      # @param options [Hash] The options for the runner and the Rack command
-      # @option options [String] :cmd ('rackup') The command used to launch Rack
-      # @option options [String] :config ('config.ru') The Rack configuration file
-      # @option options [Boolean] :debugger (false) A flag indicating whether to run in debug mode
-      # @option options [String, Symbol] :environment ('development') The Rack environment to use
-      # @option options [Boolean] :force_run (false) A flag indicating whether to kill any program listening to the Rack port
-      # @option options [String] :host ('0.0.0.0') The IP for Rack to listen on
-      # @option options [Integer] :port (9292) The port for Rack to listen on
-      # @option options [Boolean] :start_on_start (true) A flag indicating whether to start the Rack instance upon starting Guard
-      # @option options [Integer] :timeout (20) The number of seconds to wait for Rack to start up before failing
+      # @see Guard::Rack For the possible options
       #
       # @return [Guard::Rack::Runner]
       def initialize(options)

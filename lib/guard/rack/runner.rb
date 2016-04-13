@@ -1,7 +1,7 @@
 require 'fileutils'
-require 'timeout'
 require 'spoon'
 require 'guard/rack/command'
+require 'guard/rack/custom_process'
 
 module Guard
   class RackRunner
@@ -38,26 +38,7 @@ module Guard
     private
 
     def kill(pid, force = false)
-      result = -1
-
-      UI.debug("Trying to kill Rack (PID #{pid})...")
-      unless force
-        Process.kill('INT', pid)
-        begin
-          Timeout.timeout(options[:timeout]) do
-            _, status = Process.wait2(pid)
-            result = status.exitstatus
-            UI.debug("Killed Rack (Exit status: #{result})")
-          end
-        rescue Timeout::Error
-          UI.debug("Couldn't kill Rack with INT, switching to TERM")
-          force = true
-        end
-      end
-
-      Process.kill('TERM', pid) if force
-
-      result
+      Guard::Rack::CustomProcess.new(options).kill pid, force
     end
 
     def run_rack_command!

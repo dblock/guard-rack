@@ -37,7 +37,7 @@ describe Guard::RackRunner do
   describe '#start' do
     let(:unmanaged_pid) { 4567 }
     let(:pid) { 1234 }
-    let(:kill_expectation) { Process.expects(:kill).with('TERM', unmanaged_pid) }
+    let(:kill_expectation) { runner.expects(:kill) }
 
     before do
       runner.expects(:spawn).once.returns(pid)
@@ -70,21 +70,17 @@ describe Guard::RackRunner do
 
   describe '#stop' do
     context 'pid exists' do
-      let(:pid) { 12_345 }
-      let(:status_stub) { stub('process exit status') }
-      let(:wait_stub) { Process.stubs(:wait2) }
+      let(:pid) { 123_45 }
+      let(:process) { Guard::Rack::CustomProcess.stubs(:new) }
 
       before do
         runner.stubs(:spawn).returns(pid)
         runner.start
-
-        Process.expects(:kill).with('INT', pid)
       end
 
       context 'rackup returns successful exit status' do
         before do
-          wait_stub.returns([pid, status_stub])
-          status_stub.stubs(:exitstatus).returns(0)
+          process.returns(stub(kill: 0))
         end
 
         it 'should return true' do
@@ -95,25 +91,7 @@ describe Guard::RackRunner do
       context 'rackup returns unsuccessful exit status' do
         before do
           Guard::UI.stubs(:info)
-          wait_stub.returns([pid, status_stub])
-          status_stub.stubs(:exitstatus).returns(1)
-        end
-
-        it 'should return false' do
-          expect(runner.stop).to be_falsey
-        end
-
-        it 'should send some kind of message to UI.info' do
-          Guard::UI.expects(:info).with(regexp_matches(/.+/))
-          runner.stop
-        end
-      end
-
-      context 'kill times out' do
-        before do
-          Guard::UI.stubs(:info)
-          wait_stub.raises(Timeout::Error)
-          Process.expects(:kill).with('TERM', pid)
+          process.returns(stub(kill: 1))
         end
 
         it 'should return false' do

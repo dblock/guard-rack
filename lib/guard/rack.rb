@@ -8,15 +8,15 @@ module Guard
     attr_reader :options, :runner
 
     DEFAULT_OPTIONS = {
-      port: 9292,
-      host: '0.0.0.0',
-      environment: 'development',
+      port:           9292,
+      host:           '0.0.0.0',
+      environment:    'development',
       start_on_start: true,
-      force_run: false,
-      timeout: 20,
-      debugger: false,
-      config: 'config.ru',
-      cmd: 'rackup'
+      force_run:      false,
+      timeout:        20,
+      debugger:       false,
+      config:         'config.ru',
+      cmd:            'rackup'
     }
 
     def initialize(options = {})

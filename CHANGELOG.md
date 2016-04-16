@@ -1,8 +1,7 @@
-2.2.0 (Next)
-============
+2.2.0 (4/16/2016)
+=================
 
-* Your contribution here.
-* [#23](https://github.com/dblock/guard-rack/pull/23) Supports Windows - [@jonyeezs](https://github.com/jonyeezs)
+* [#23](https://github.com/dblock/guard-rack/pull/23) Added Windows support - [@jonyeezs](https://github.com/jonyeezs).
 
 2.1.1 (03/07/2015)
 ============

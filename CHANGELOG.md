@@ -1,12 +1,13 @@
 2.2.1 (Next)
 ============
 
+* [#24](https://github.com/dblock/guard-rack/pull/24): Use absolute module namespace to prevent conflict with Guard::Process - [@cristianbica](https://github.com/cristianbica).
 * Your contribution here.
 
 2.2.0 (4/16/2016)
 =================
 
-* [#23](https://github.com/dblock/guard-rack/pull/23) Added Windows support - [@jonyeezs](https://github.com/jonyeezs).
+* [#23](https://github.com/dblock/guard-rack/pull/23): Added Windows support - [@jonyeezs](https://github.com/jonyeezs).
 
 2.1.1 (03/07/2015)
 ============

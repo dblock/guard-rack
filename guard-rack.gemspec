@@ -24,5 +24,10 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'fakefs'
   gem.add_development_dependency 'mocha', '~> 1.1'
-  gem.add_development_dependency 'rack'
+
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.2.0')
+    gem.add_development_dependency 'rack', '< 2'
+  else
+    gem.add_development_dependency 'rack', '~> 2'
+  end
 end

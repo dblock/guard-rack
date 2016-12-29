@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'ffi'
   gem.add_dependency 'spoon'
 
-  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rake', '< 11'
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'fakefs'

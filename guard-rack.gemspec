@@ -19,10 +19,15 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'ffi'
   gem.add_dependency 'spoon'
 
-  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rake', '< 11'
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'fakefs'
   gem.add_development_dependency 'mocha', '~> 1.1'
-  gem.add_development_dependency 'rack'
+
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.2.0')
+    gem.add_development_dependency 'rack', '< 2'
+  else
+    gem.add_development_dependency 'rack', '~> 2'
+  end
 end

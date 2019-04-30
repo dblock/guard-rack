@@ -6,11 +6,11 @@ module Guard
       attr_reader :options
 
       def self.new(options = {})
-        if Gem.win_platform?
-          os_instance = Windows.allocate
-        else
-          os_instance = Nix.allocate
-        end
+        os_instance = if Gem.win_platform?
+                        Windows.allocate
+                      else
+                        Nix.allocate
+                      end
         os_instance.send :initialize, options
         os_instance
       end
@@ -24,10 +24,10 @@ module Guard
           result = -1
           UI.debug("Trying to kill Rack (PID #{pid})...")
           unless force
-            Process.kill('INT', pid)
+            ::Process.kill('INT', pid)
             begin
               Timeout.timeout(options[:timeout]) do
-                _, status = Process.wait2(pid)
+                _, status = ::Process.wait2(pid)
                 result = status.exitstatus
                 UI.debug("Killed Rack (Exit status: #{result})")
               end
@@ -36,7 +36,7 @@ module Guard
               force = true
             end
           end
-          Process.kill('TERM', pid) if force
+          ::Process.kill('TERM', pid) if force
           result
         end
       end

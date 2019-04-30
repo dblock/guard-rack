@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2012 Daniel Doubrovkine
+Copyright (c) 2012-2019 Daniel Doubrovkine and Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

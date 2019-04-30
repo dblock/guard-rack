@@ -1,8 +1,7 @@
-2.2.1 (Next)
-============
+2.2.1 (4/30/2019)
+=================
 
 * [#24](https://github.com/dblock/guard-rack/pull/24): Use absolute module namespace to prevent conflict with Guard::Process - [@cristianbica](https://github.com/cristianbica).
-* Your contribution here.
 
 2.2.0 (4/16/2016)
 =================

@@ -6,11 +6,11 @@ module Guard
       attr_reader :options
 
       def self.new(options = {})
-        if Gem.win_platform?
-          os_instance = Windows.allocate
-        else
-          os_instance = Nix.allocate
-        end
+        os_instance = if Gem.win_platform?
+                        Windows.allocate
+                      else
+                        Nix.allocate
+                      end
         os_instance.send :initialize, options
         os_instance
       end

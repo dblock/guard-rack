@@ -51,7 +51,7 @@ describe Guard::Rack::CustomProcess do
         end
 
         it 'should return true' do
-          expect(subject.kill pid).to eq(0)
+          expect(subject.kill(pid)).to eq(0)
         end
       end
 
@@ -63,7 +63,7 @@ describe Guard::Rack::CustomProcess do
         end
 
         it 'should return false' do
-          expect(subject.kill pid).to eq(1)
+          expect(subject.kill(pid)).to eq(1)
         end
       end
 
@@ -74,7 +74,7 @@ describe Guard::Rack::CustomProcess do
         end
 
         it 'should return false' do
-          expect(subject.kill pid).to eq(-1)
+          expect(subject.kill(pid)).to eq(-1)
         end
       end
     end
@@ -99,7 +99,7 @@ describe Guard::Rack::CustomProcess do
           end
 
           it 'should result in 0' do
-            expect(subject.kill pid).to eq(0)
+            expect(subject.kill(pid)).to eq(0)
           end
         end
       end

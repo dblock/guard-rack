@@ -3,14 +3,14 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'ffi'
-gem 'spoon'
 gem 'guard', '~> 2.3.0'
+gem 'spoon'
 
 group :development, :test do
-  gem 'guard-rspec', '~> 4.2.5'
   gem 'growl'
-  gem 'rb-inotify', require: false
-  gem 'rb-fsevent', require: false
+  gem 'guard-rspec', '~> 4.2.5'
   gem 'rb-fchange', require: false
-  gem 'rubocop', '0.27.1'
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
+  gem 'rubocop', '0.68.0'
 end

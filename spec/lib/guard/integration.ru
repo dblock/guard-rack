@@ -1,9 +1,9 @@
 class HelloWorld
-  def call(env)
-    return [
+  def call(_env)
+    [
       200,
-      {'Content-Type' => 'text/html'},
-      ["Hello world!"]
+      { 'Content-Type' => 'text/html' },
+      ['Hello world!']
     ]
   end
 end

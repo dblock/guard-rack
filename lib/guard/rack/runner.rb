@@ -32,7 +32,9 @@ module Guard
     end
 
     def restart
-      stop && start
+      stop
+      start
+      @pid ? true : false
     end
 
     private

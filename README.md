@@ -2,9 +2,7 @@ Guard::Rack
 ===========
 
 [![Gem Version](http://img.shields.io/gem/v/guard-rack.svg)](http://badge.fury.io/rb/guard-rack)
-[![Build Status](http://img.shields.io/travis/dblock/guard-rack.svg)](https://travis-ci.org/dblock/guard-rack)
-[![Dependency Status](https://gemnasium.com/dblock/guard-rack.svg)](https://gemnasium.com/dblock/guard-rack)
-[![Code Climate](https://codeclimate.com/github/dblock/guard-rack.svg)](https://codeclimate.com/github/dblock/guard-rack)
+[![Test](https://github.com/dblock/guard-rack/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/dblock/guard-rack/actions/workflows/test.yml)
 
 Want to restart your Rack development with *rackup* whilst you work? Now you can!
 

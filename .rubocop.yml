@@ -1,7 +1,10 @@
 AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7
+  SuggestExtensions: false
   Exclude:
-    - vendor/**
-    - bin/**
+    - vendor/**/*
+    - bin/**/*
 
 Metrics:
   Enabled: false

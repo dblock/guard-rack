@@ -7,4 +7,7 @@ require 'mocha/api'
 RSpec.configure do |c|
   c.mock_with :mocha
   c.raise_errors_for_deprecations!
+  c.before do
+    Guard.init({})
+  end
 end

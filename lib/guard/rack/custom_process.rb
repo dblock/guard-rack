@@ -1,3 +1,4 @@
+require 'English'
 require 'timeout'
 
 module Guard

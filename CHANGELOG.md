@@ -1,5 +1,6 @@
 ### 2.2.2 (Next)
 
+* [#30](https://github.com/dblock/guard-rack/pull/30): Replaced Travis CI with GitHub Actions, tested with Ruby 2.7 through 4.0 and JRuby, fixed compatibility with current Guard, Rack and RuboCop, and fixed `Guard::Rack::CustomProcess::Windows#kill` failing because `English` was not loaded - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 2.2.1 (2019/4/30)

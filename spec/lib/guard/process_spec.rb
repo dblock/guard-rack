@@ -95,7 +95,8 @@ describe Guard::Rack::CustomProcess do
       describe 'kill' do
         context 'successful exit status' do
           before do
-            $CHILD_STATUS.stubs(:exitstatus).returns 0
+            # sets $CHILD_STATUS to a successful exit status
+            Kernel.system('true')
           end
 
           it 'should result in 0' do

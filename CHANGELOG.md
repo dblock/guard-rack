@@ -1,6 +1,7 @@
 ### 2.2.2 (Next)
 
 * [#30](https://github.com/dblock/guard-rack/pull/30): Replaced Travis CI with GitHub Actions, tested with Ruby 2.7 through 4.0 and JRuby, fixed compatibility with current Guard, Rack and RuboCop, and fixed `Guard::Rack::CustomProcess::Windows#kill` failing because `English` was not loaded - [@dblock](https://github.com/dblock).
+* [#31](https://github.com/dblock/guard-rack/pull/31): Lint Markdown, YAML, and spelling with rubocop-md, rubocop-prose, rubocop-spellcheck, and rubocop-yaml in a separate Lint workflow, and clean up documentation - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 2.2.1 (2019/4/30)
@@ -30,7 +31,7 @@
 ### 1.4.0 (2014/1/28)
 
 * Ruby 1.8.7 and 1.9.2 are no longer supported - [@dblock](https://github.com/dblock).
-* Implemented Rubocop, Ruby linter - [@dblock](https://github.com/dblock).
+* Implemented RuboCop, Ruby linter - [@dblock](https://github.com/dblock).
 * [#13](https://github.com/dblock/guard-rack/pull/13): Fix: do not lock a specific version of Rack - [@Nerian](https://github.com/Nerian).
 
 ### 1.3.1 (2013/1/16)

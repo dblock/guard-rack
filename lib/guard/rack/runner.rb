@@ -31,8 +31,11 @@ module Guard
       true
     end
 
+    # Starts a new process even if stopping the previous one reported an error,
+    # for example when rackup had already exited because of a syntax error in config.ru.
     def restart
-      stop && start
+      stop
+      start
     end
 
     private

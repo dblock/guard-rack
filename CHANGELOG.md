@@ -3,6 +3,7 @@
 * [#30](https://github.com/dblock/guard-rack/pull/30): Replaced Travis CI with GitHub Actions, tested with Ruby 2.7 through 4.0 and JRuby, fixed compatibility with current Guard, Rack and RuboCop, and fixed `Guard::Rack::CustomProcess::Windows#kill` failing because `English` was not loaded - [@dblock](https://github.com/dblock).
 * [#31](https://github.com/dblock/guard-rack/pull/31): Lint Markdown, YAML, and spelling with rubocop-md, rubocop-prose, rubocop-spellcheck, and rubocop-yaml in a separate Lint workflow, and clean up documentation - [@dblock](https://github.com/dblock).
 * [#32](https://github.com/dblock/guard-rack/pull/32): Run CI pushes only on the default branch, cancel superseded pull request runs, skip duplicate lint in the test matrix, and bound job times - [@dblock](https://github.com/dblock).
+* [#34](https://github.com/dblock/guard-rack/pull/34): Release with ruby-gem-release through a manually dispatched GitHub Actions workflow and RubyGems Trusted Publishing - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 2.2.1 (2019/4/30)

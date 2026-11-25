@@ -5,3 +5,4 @@ pkg/*
 .rvmrc
 .redcar
 
+/vendor/bundle/

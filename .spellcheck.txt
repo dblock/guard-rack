@@ -1,3 +1,4 @@
+Bundler
 CHANGELOG
 config
 cristianbica
@@ -7,6 +8,8 @@ Doubrovkine
 env
 ffi
 Gemfile
+gemspec
+GuardRackRelease
 html
 jdurand
 jonyeezs
@@ -22,11 +25,14 @@ Nerian
 NONINFRINGEMENT
 pid
 rackup
+Rakefile
 rb
+README
 rspec
 ru
 rubocop
 rubycut
+RubyGems
 spawner
 sublicense
 taskkill

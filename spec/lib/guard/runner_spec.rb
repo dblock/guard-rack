@@ -111,4 +111,38 @@ describe Guard::RackRunner do
       end
     end
   end
+
+  describe '#restart' do
+    let(:pid) { 123_45 }
+    let(:new_pid) { 678_90 }
+    let(:process) { Guard::Rack::CustomProcess.stubs(:new) }
+
+    before do
+      Guard::UI.stubs(:info)
+      runner.stubs(:spawn).returns(pid, new_pid)
+      runner.start
+    end
+
+    context 'rackup exits successfully' do
+      before do
+        process.returns(stub(kill: 0))
+      end
+
+      it 'starts a new process' do
+        expect(runner.restart).to be_truthy
+        expect(runner.pid).to eq(new_pid)
+      end
+    end
+
+    context 'rackup already exited with an error, for example on a syntax error in config.ru' do
+      before do
+        process.returns(stub(kill: 1))
+      end
+
+      it 'still starts a new process' do
+        expect(runner.restart).to be_truthy
+        expect(runner.pid).to eq(new_pid)
+      end
+    end
+  end
 end
